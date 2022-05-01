@@ -1,9 +1,9 @@
 import React from 'react';
+import CourseContainer from './container/CourseContainer';
 
 function App() {
-  let a = [];
-
-  return <div className="App"></div>;
+  console.log('App');
+  return <CourseContainer />;
 }
 
 export default App;
