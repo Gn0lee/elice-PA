@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getCourseList(title: string, price: []) {
   const filterConditions = {
-    $and: [{ title: '%' + title + '%' }, { $or: price }],
+    $and: [{ title: `%${title}%` }, { $or: price }],
   };
   const filterConditionsJSON = JSON.stringify(filterConditions);
 

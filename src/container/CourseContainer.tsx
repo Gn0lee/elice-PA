@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 import { getCourseList } from '../api/getCourseList';
 import SearchArea from '../components/SearchArea';
 import CourseCards from '../components/CourseCards';
+
+const CourseContainerStyle = styled.div`
+  width: calc(100vw - 48px);
+  @media screen and (min-width: 1281px) {
+    width: 1232px;
+    margin: auto;
+  }
+`;
 
 function CourseContainer() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,10 +19,11 @@ function CourseContainer() {
   const [courses, setCourses] = useState<any>([]);
   const [title, setTitle] = useState('');
   const [priceList, setPriceList] = useState<any>([]);
-  const price = 'price';
+  const PRICE = 'price';
+  const TITLE = 'title';
 
   useEffect(() => {
-    let firstTitle = searchParams.get('title');
+    const firstTitle = searchParams.get(TITLE);
     if (firstTitle !== null) {
       setTitle(firstTitle.slice(1, -1));
     }
@@ -29,26 +39,38 @@ function CourseContainer() {
   }, []);
 
   const handlePriceParams = (value: string) => {
-    const params = searchParams.getAll(price);
+    const params = searchParams.getAll(PRICE);
     if (params.find((elem) => elem === value)) {
-      searchParams.delete(price);
+      searchParams.delete(PRICE);
       params.forEach((elem) => {
         if (elem !== value) {
-          searchParams.append(price, elem);
+          searchParams.append(PRICE, elem);
         }
       });
       setSearchParams(searchParams);
     } else {
-      searchParams.append(price, value);
+      searchParams.append(PRICE, value);
+      setSearchParams(searchParams);
+    }
+  };
+
+  const handleTitleParams = (value: string) => {
+    const params = searchParams.get(TITLE);
+    if (params) {
+      searchParams.set(TITLE, `%${title}%`);
+
+      setSearchParams(searchParams);
+    } else {
+      searchParams.append(TITLE, `%${title}%`);
       setSearchParams(searchParams);
     }
   };
 
   return (
-    <>
-      <SearchArea />
+    <CourseContainerStyle>
+      <SearchArea title={title} setTitle={setTitle} handleTitleParams={handleTitleParams} />
       <CourseCards />
-    </>
+    </CourseContainerStyle>
   );
 }
 
