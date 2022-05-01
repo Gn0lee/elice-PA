@@ -21,7 +21,6 @@ const SearchIConInputInnerContainer = styled.div`
   border: 1px solid rgb(201, 202, 204);
   border-radius: 0.25rem;
   background-color: rgb(255, 255, 255);
-  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   box-sizing: border-box;
 `;
 const SearchIconContainer = styled.div`
@@ -46,6 +45,9 @@ const SearchInput = styled.input`
   line-height: 1.5;
   font-family: inherit;
   width: 100%;
+  &:focus {
+    outline: none;
+  }
 `;
 const SearchMarginBox = styled.div`
   display: flex;
@@ -115,6 +117,11 @@ const FilterBtn = styled.button`
   border-radius: 1.875rem;
   font-size: 0.875rem;
   background: rgb(240, 241, 243);
+  &:hover {
+    color: rgb(0, 0, 0);
+    background: rgb(225, 226, 228);
+    border-color: rgb(225, 226, 228);
+  }
 `;
 const FilterBtnSpan = styled.span`
   line-height: 1.5;
@@ -131,8 +138,8 @@ function SearchArea({ title, setTitle, handleTitleParams }: SearchAreaProps) {
   ];
   const renderFilterBtn = useCallback((item: string) => {
     return (
-      <FilterBtn key={item}>
-        <FilterBtnSpan>{item}</FilterBtnSpan>
+      <FilterBtn key={`${item}btn`}>
+        <FilterBtnSpan key={`${item}span`}>{item}</FilterBtnSpan>
       </FilterBtn>
     );
   }, []);
@@ -141,20 +148,20 @@ function SearchArea({ title, setTitle, handleTitleParams }: SearchAreaProps) {
     const category = item.shift();
 
     return (
-      <div>
+      <div key={`${category}div`}>
         {last ? (
-          <SearchFilterLastBox>
-            <FilterCategoryBox>
-              <CategoryName>{category}</CategoryName>
+          <SearchFilterLastBox key={`${category}filterlastbox`}>
+            <FilterCategoryBox key={`${category}categorybox1`}>
+              <CategoryName key={`${category}categoryname1`}>{category}</CategoryName>
             </FilterCategoryBox>
-            <FilterBtnBox>{item.map((elem) => renderFilterBtn(elem))}</FilterBtnBox>
+            <FilterBtnBox key={`${category}btnbox1`}>{item.map((elem) => renderFilterBtn(elem))}</FilterBtnBox>
           </SearchFilterLastBox>
         ) : (
-          <SearchFilterBox>
-            <FilterCategoryBox>
-              <CategoryName>{category}</CategoryName>
+          <SearchFilterBox key={`${category}filterbox`}>
+            <FilterCategoryBox key={`${category}categorybox2`}>
+              <CategoryName key={`${category}categoryname2`}>{category}</CategoryName>
             </FilterCategoryBox>
-            <FilterBtnBox>{item.map((elem) => renderFilterBtn(elem))}</FilterBtnBox>
+            <FilterBtnBox key={`${category}btnbox2`}>{item.map((elem) => renderFilterBtn(elem))}</FilterBtnBox>
           </SearchFilterBox>
         )}
       </div>
@@ -174,11 +181,11 @@ function SearchArea({ title, setTitle, handleTitleParams }: SearchAreaProps) {
           <SearchMarginBox />
         </SearchIConInputInnerContainer>
       </SearchIConInputContainer>
-      <SearchSpace />
+      <SearchSpace key="space1" />
       <SearchFilterContainer>
         {filterList.map((filter, index) => renderFilterBox(filter, index === filterList.length - 1))}
       </SearchFilterContainer>
-      <SearchSpace />
+      <SearchSpace key="space2" />
     </SearchHeader>
   );
 }
