@@ -93,9 +93,9 @@ export const FilterBtnBox = styled.div`
   -webkit-box-align: center;
   align-items: center;
 `;
-export const FilterBtn = styled.button`
+export const FilterBtn = styled.button<{ selected: boolean }>`
   margin: 0.5rem;
-  color: rgb(94, 95, 97);
+  ${(props) => (props.selected ? `color: rgb(249,250,252);` : `color: rgb(94, 95, 97);`)}
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;
@@ -108,11 +108,21 @@ export const FilterBtn = styled.button`
   height: 1.875rem;
   border-radius: 1.875rem;
   font-size: 0.875rem;
-  background: rgb(240, 241, 243);
+  ${(props) => (props.selected ? `background: rgb(82, 79, 161);` : `background: rgb(240, 241, 243);`)}
+
   &:hover {
+    ${(props) =>
+      props.selected
+        ? `
+    color: rgb(240, 241, 243);
+    background: rgb(66, 63, 140);
+    border-color: rgb(66, 63, 140);
+    `
+        : `
     color: rgb(0, 0, 0);
     background: rgb(225, 226, 228);
     border-color: rgb(225, 226, 228);
+    `}
   }
 `;
 export const FilterBtnSpan = styled.span`

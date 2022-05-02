@@ -178,5 +178,23 @@ export type CourseCardsProps = {
 export type SearchAreaProps = {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  priceList: $orEntity[];
+  setPriceList: React.Dispatch<React.SetStateAction<$orEntity[]>>;
   handleTitleParams: (value: string) => void;
+  handlePriceParams: (value: string) => void;
+  filterList: string[];
+  setFilterList: React.Dispatch<React.SetStateAction<string[]>>;
 };
+
+export const FREE = '무료';
+export const PAY = '유료';
+export const SUBSCRIBE = '구독';
+
+export const priceInfo = {
+  무료: { enroll_type: 0, is_free: true },
+  유료: { enroll_type: 0, is_free: false },
+  구독: { enroll_type: 4, is_free: false },
+};
+
+export const PRICE = 'price';
+export const TITLE = 'title';
