@@ -13,6 +13,7 @@ function SearchArea({
   setFilterList,
   priceList,
   setPriceList,
+  setOffset,
 }: SearchAreaProps) {
   const filterNameList = [
     ['유형', '과목', '챌린지', '테스트'],
@@ -114,6 +115,7 @@ function SearchArea({
         }
         break;
     }
+    setOffset(1);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

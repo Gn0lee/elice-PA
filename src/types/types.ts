@@ -184,6 +184,7 @@ export type SearchAreaProps = {
   handlePriceParams: (value: string) => void;
   filterList: string[];
   setFilterList: React.Dispatch<React.SetStateAction<string[]>>;
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const FREE = '무료';

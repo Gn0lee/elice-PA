@@ -84,6 +84,7 @@ function CourseContainer() {
         setFilterList={setFilterList}
         priceList={priceList}
         setPriceList={setPriceList}
+        setOffset={setOffset}
       />
       {courses.length ? (
         <CourseCards numCourse={numCourse} courses={courses} offset={offset} setOffset={setOffset} />
