@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { BarChartOutlined, LaptopOutlined, CalendarOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { CoursesEntity, CourseCardsProps } from '../types/types';
+import { CoursesEntity, CourseCardsProps, SUBSCRIBE, PAY, FREE } from '../types/types';
 import * as Styled from './CourseCards.styled';
 
 function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps) {
@@ -10,11 +10,11 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
   const renderCard = useCallback((course: CoursesEntity, idx: number) => {
     let price;
     if (course.enroll_type === 4) {
-      price = '구독';
+      price = SUBSCRIBE;
     } else if (course.is_free) {
-      price = '무료';
+      price = FREE;
     } else {
-      price = '유료';
+      price = PAY;
     }
     return (
       <Styled.CardOuterFrame key={`${idx}-cardouterframe`} data-testid="card">
