@@ -61,7 +61,6 @@ function CourseContainer() {
     const params = searchParams.get(TITLE);
     if (params) {
       searchParams.set(TITLE, `%${value}%`);
-
       setSearchParams(searchParams);
     } else {
       searchParams.append(TITLE, `%${value}%`);

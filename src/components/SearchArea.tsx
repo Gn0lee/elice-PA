@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
+import debounce from 'lodash.debounce';
 import * as Styled from './SearchArea.styled';
 import { SearchAreaProps, FREE, PAY, SUBSCRIBE, priceInfo } from '../types/types';
 
@@ -115,6 +116,13 @@ function SearchArea({
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+    handleTitleParams(e.target.value);
+  };
+
+  const debouncedHandleChange = useCallback(debounce(handleChange, 300), [title]);
+
   return (
     <Styled.SearchHeader>
       <Styled.SearchIConInputContainer>
@@ -123,7 +131,12 @@ function SearchArea({
             <SearchOutlined />
           </Styled.SearchIconContainer>
           <Styled.SearchInputContainer>
-            <Styled.SearchInput placeholder="배우고 싶은 언어, 기술을 검색해 보세요" type="text" value={title} />
+            <Styled.SearchInput
+              placeholder="배우고 싶은 언어, 기술을 검색해 보세요"
+              type="text"
+              defaultValue={title || ''}
+              onChange={debouncedHandleChange}
+            />
           </Styled.SearchInputContainer>
           <Styled.SearchMarginBox />
         </Styled.SearchIConInputInnerContainer>
