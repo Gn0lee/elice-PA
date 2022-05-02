@@ -167,3 +167,16 @@ export interface $orEntity {
   enroll_type: number;
   is_free: boolean;
 }
+
+export type CourseCardsProps = {
+  numCourse: number;
+  courses: CoursesEntity[];
+  offset: number;
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export type SearchAreaProps = {
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  handleTitleParams: (value: string) => void;
+};
