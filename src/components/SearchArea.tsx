@@ -121,6 +121,7 @@ function SearchArea({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
     handleKeywordParams(e.target.value);
+    setOffset(1);
   };
 
   const debouncedHandleChange = useCallback(debounce(handleChange, 300), [keyword]);

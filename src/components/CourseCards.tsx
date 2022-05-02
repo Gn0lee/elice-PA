@@ -17,7 +17,7 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
       price = '유료';
     }
     return (
-      <Styled.CardOuterFrame key={`${idx}-cardouterframe`}>
+      <Styled.CardOuterFrame key={`${idx}-cardouterframe`} data-testid="card">
         <Styled.CardInnerFrame key={`${idx}-cardinnerframe`}>
           <Styled.CardBody>
             <Styled.CardHeaderContainer key={`${idx}-cardheadercontainer`}>
