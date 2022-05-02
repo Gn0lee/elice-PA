@@ -31,11 +31,11 @@ export const CardsInnerContainer = styled.div`
   justify-content: flex-start;
 `;
 export const CardOuterFrame = styled.div`
-  width: calc(25% - 16px);
+  width: 296px;
+  height: 338px;
   margin: 8px;
 `;
 export const CardInnerFrame = styled.div`
-  min-width: auto;
   border: none;
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
@@ -58,7 +58,7 @@ export const CardPrice = styled.div`
   line-height: 1.6;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.75rem;
+  font-size: 12px;
   color: #524fa1;
   font-weight: 700;
 `;
@@ -76,7 +76,7 @@ export const CardTitle = styled.div`
   line-height: 1.6;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1.125rem;
+  font-size: 18px;
   color: #222;
   font-weight: 700;
 `;
@@ -93,7 +93,7 @@ export const CardDes = styled.div`
   line-height: 1.6;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.875rem;
+  font-size: 14px;
   color: #5e5f61;
 `;
 export const HeaderSpace = styled.div`
@@ -126,13 +126,13 @@ export const CardLeftInfoBox = styled.div`
   align-items: center;
 `;
 export const CardLeftInfoTitle = styled.div`
-  font-size: 0.75rem;
+  font-size: 12px;
   color: #7d7e80;
   display: inline-block;
 `;
 export const CardLeftInfoCmt = styled.div`
   padding-left: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 12px;
   color: #7d7e80;
   display: inline-block;
   white-space: nowrap;
@@ -140,10 +140,8 @@ export const CardLeftInfoCmt = styled.div`
   text-overflow: ellipsis;
 `;
 export const CardRightLogo = styled.div<{ src: string }>`
-  display: inline-block;
-  width: 3.25rem;
-  min-width: 3.25rem;
-  height: 3.25rem;
+  width: 52px;
+  height: 52px;
   background-image: url(${(props) => props.src});
   background-position: center center;
   background-size: contain;
@@ -163,13 +161,13 @@ export const PageBtnContainer = styled.div`
   line-height: 1.5rem;
 `;
 export const PageBtn = styled.div<{ selected: boolean }>`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
   line-height: 1.5rem;
   text-align: center;
   cursor: pointer;
   font-size: 0.875rem;
-  ${(props) => (props.selected ? `color: #fff; background-color: #524fa1;` : `color: #999;`)}
+  ${(props) => (props.selected ? `color: white; background-color: #524fa1;` : `color: #999;`)}
   margin: 0 0.375rem;
   &:hover {
     color: #524fa1;

@@ -4,16 +4,14 @@ export const SearchHeader = styled.div``;
 export const SearchIConInputContainer = styled.div`
   display: inline-block;
   width: 100%;
-  max-width: 100%;
+  padding: 12px 0px;
 `;
 export const SearchIConInputInnerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   border: 1px solid rgb(201, 202, 204);
-  border-radius: 0.25rem;
+  border-radius: 4px;
   background-color: rgb(255, 255, 255);
-  box-sizing: border-box;
 `;
 export const SearchIconContainer = styled.div`
   display: flex;
@@ -29,8 +27,7 @@ export const SearchInputContainer = styled.div`
   overflow: hidden;
 `;
 export const SearchInput = styled.input`
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin: 12px 0px;
   font-size: 0.875rem;
   border: none;
   background: transparent;
@@ -39,6 +36,9 @@ export const SearchInput = styled.input`
   width: 100%;
   &:focus {
     outline: none;
+  }
+  ::placeholder {
+    color: grey;
   }
 `;
 export const SearchMarginBox = styled.div`

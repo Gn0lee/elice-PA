@@ -41,17 +41,50 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
             <Styled.CardInfoContainer key={`${idx}-cardinfocontainer1`}>
               <Styled.CardLeftInfoContainer key={`${idx}-cardleftinfocontainer1`}>
                 <Styled.CardLeftInfoTopBox key={`${idx}-cardleftinfobox1`}>
-                  <BarChartOutlined style={{ fontSize: '14px', marginRight: '8px' }} key={`${idx}-barchart`} />
+                  <BarChartOutlined
+                    style={{
+                      fontSize: '24px',
+                      width: '24px',
+                      height: '24px',
+                      marginRight: '8px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    key={`${idx}-barchart`}
+                  />
                   <Styled.CardLeftInfoTitle key={`${idx}-cardleftinfotitle1`}>난이도 :</Styled.CardLeftInfoTitle>
                   <Styled.CardLeftInfoCmt key={`${idx}-cardleftinfocmt1`}>미설정</Styled.CardLeftInfoCmt>
                 </Styled.CardLeftInfoTopBox>
                 <Styled.CardLeftInfoBox key={`${idx}-cardleftinfobox2`}>
-                  <LaptopOutlined style={{ fontSize: '14px', marginRight: '8px' }} key={`${idx}-labtop`} />
+                  <LaptopOutlined
+                    style={{
+                      fontSize: '24px',
+                      width: '24px',
+                      height: '24px',
+                      marginRight: '8px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    key={`${idx}-labtop`}
+                  />
                   <Styled.CardLeftInfoTitle key={`${idx}-cardleftinfotitle2`}>수업 :</Styled.CardLeftInfoTitle>
                   <Styled.CardLeftInfoCmt key={`${idx}-cardleftinfocmt2`}>온라인</Styled.CardLeftInfoCmt>
                 </Styled.CardLeftInfoBox>
                 <Styled.CardLeftInfoBox key={`${idx}-cardleftinfobox3`}>
-                  <CalendarOutlined style={{ fontSize: '14px', marginRight: '8px' }} key={`${idx}-calendar`} />
+                  <CalendarOutlined
+                    style={{
+                      fontSize: '24px',
+                      width: '24px',
+                      height: '24px',
+                      marginRight: '8px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    key={`${idx}-calendar`}
+                  />
                   <Styled.CardLeftInfoTitle key={`${idx}-cardleftinfobox3`}>기간 :</Styled.CardLeftInfoTitle>
                   <Styled.CardLeftInfoCmt key={`${idx}-cardleftinfocmt3`}>무제한</Styled.CardLeftInfoCmt>
                 </Styled.CardLeftInfoBox>

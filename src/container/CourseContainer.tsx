@@ -3,14 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import { getCourseList } from '../api/getCourseList';
 import SearchArea from '../components/SearchArea';
 import CourseCards from '../components/CourseCards';
-import { CoursesEntity, $orEntity, priceInfo, PRICE, TITLE, FREE, PAY, SUBSCRIBE } from '../types/types';
+import { CoursesEntity, $orEntity, priceInfo, PRICE, KEYWORD, FREE, PAY, SUBSCRIBE } from '../types/types';
 import * as Styled from './CourseContainer.styled';
 
 function CourseContainer() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const firstTitles = searchParams.get(TITLE);
+  const firstKeywords = searchParams.get(KEYWORD);
   const prices = searchParams.getAll(PRICE);
-  const firstTitle = firstTitles ? firstTitles.slice(1, -1) : '';
+  const firstKeyword = firstKeywords ? firstKeywords.slice(1, -1) : '';
   const firstPriceList = prices.length
     ? prices.map((price) => {
         if (price === FREE) {
@@ -25,21 +25,22 @@ function CourseContainer() {
 
   const [numCourse, setNumCourse] = useState(0);
   const [courses, setCourses] = useState<CoursesEntity[]>([]);
-  const [title, setTitle] = useState(firstTitle);
+  const [keyword, setKeyword] = useState(firstKeyword);
   const [priceList, setPriceList] = useState<$orEntity[]>(firstPriceList);
   const [offset, setOffset] = useState(1);
   const [filterList, setFilterList] = useState<string[]>(prices);
 
   useEffect(() => {
-    getCourseList(title, priceList, offset - 1)
+    getCourseList(keyword, priceList, offset - 1)
       .then((res) => {
         setNumCourse(res.course_count);
         setCourses(res.courses);
       })
       .catch((e) => {
+        // eslint-disable-next-line
         console.log(e);
       });
-  }, [offset, title, priceList]);
+  }, [offset, keyword, priceList]);
 
   const handlePriceParams = (value: string) => {
     const params = searchParams.getAll(PRICE);
@@ -57,13 +58,17 @@ function CourseContainer() {
     }
   };
 
-  const handleTitleParams = (value: string) => {
-    const params = searchParams.get(TITLE);
+  const handleKeywordParams = (value: string) => {
+    const params = searchParams.get(KEYWORD);
     if (params) {
-      searchParams.set(TITLE, `%${value}%`);
+      if (value === '') {
+        searchParams.delete(KEYWORD);
+      } else {
+        searchParams.set(KEYWORD, `%${value}%`);
+      }
       setSearchParams(searchParams);
-    } else {
-      searchParams.append(TITLE, `%${value}%`);
+    } else if (value !== '') {
+      searchParams.append(KEYWORD, `%${value}%`);
       setSearchParams(searchParams);
     }
   };
@@ -71,9 +76,9 @@ function CourseContainer() {
   return (
     <Styled.CourseContainerStyle>
       <SearchArea
-        title={title}
-        setTitle={setTitle}
-        handleTitleParams={handleTitleParams}
+        keyword={keyword}
+        setKeyword={setKeyword}
+        handleKeywordParams={handleKeywordParams}
         handlePriceParams={handlePriceParams}
         filterList={filterList}
         setFilterList={setFilterList}

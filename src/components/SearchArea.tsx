@@ -5,9 +5,9 @@ import * as Styled from './SearchArea.styled';
 import { SearchAreaProps, FREE, PAY, SUBSCRIBE, priceInfo } from '../types/types';
 
 function SearchArea({
-  title,
-  setTitle,
-  handleTitleParams,
+  keyword,
+  setKeyword,
+  handleKeywordParams,
   handlePriceParams,
   filterList,
   setFilterList,
@@ -117,11 +117,11 @@ function SearchArea({
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-    handleTitleParams(e.target.value);
+    setKeyword(e.target.value);
+    handleKeywordParams(e.target.value);
   };
 
-  const debouncedHandleChange = useCallback(debounce(handleChange, 300), [title]);
+  const debouncedHandleChange = useCallback(debounce(handleChange, 300), [keyword]);
 
   return (
     <Styled.SearchHeader>
@@ -134,14 +134,13 @@ function SearchArea({
             <Styled.SearchInput
               placeholder="배우고 싶은 언어, 기술을 검색해 보세요"
               type="text"
-              defaultValue={title || ''}
+              defaultValue={keyword || ''}
               onChange={debouncedHandleChange}
             />
           </Styled.SearchInputContainer>
           <Styled.SearchMarginBox />
         </Styled.SearchIConInputInnerContainer>
       </Styled.SearchIConInputContainer>
-      <Styled.SearchSpace key="space1" />
       <Styled.SearchFilterContainer onClick={handleFilterClick}>
         {filterNameList.map((filter, index) => renderFilterBox(filter, index === filterNameList.length - 1))}
       </Styled.SearchFilterContainer>
