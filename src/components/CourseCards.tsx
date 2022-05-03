@@ -102,7 +102,12 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
   const renderPageBtn = useCallback(
     (elem: number) => {
       return (
-        <Styled.PageBtn selected={elem === offset} id={`${String(elem)}-pgbtn}`} key={`${String(elem)}-pgbtn}`}>
+        <Styled.PageBtn
+          selected={elem === offset}
+          id={`${String(elem)}-pgbtn}`}
+          key={`${String(elem)}-pgbtn}`}
+          data-testid="page-btn"
+        >
           {elem}
         </Styled.PageBtn>
       );
@@ -131,7 +136,7 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
   return (
     <div>
       <Styled.NumContainer>
-        <Styled.NumDiv>전체 {numCourse}개</Styled.NumDiv>
+        <Styled.NumDiv data-testid="num-course">전체 {numCourse}개</Styled.NumDiv>
       </Styled.NumContainer>
       <Styled.CourseSpace />
       <Styled.CardsOuterContainer>
@@ -144,6 +149,7 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
             cursor: offset === 1 ? `not-allowed` : `pointer`,
           }}
           onClick={handleLeftClick}
+          data-testid="left-arrow"
         />
         <Styled.PageBtnContainer onClick={handlePageBtnClick}>
           {offsetList.map((value) => {
@@ -159,6 +165,7 @@ function CourseCards({ numCourse, courses, offset, setOffset }: CourseCardsProps
             cursor: offset === lastOffset ? `not-allowed` : `pointer`,
           }}
           onClick={handleRightClick}
+          data-testid="right-arrow"
         />
       </Styled.PagenationContainer>
     </div>

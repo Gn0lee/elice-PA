@@ -30,6 +30,7 @@ function SearchArea({
           key={`${item}btn`}
           id={`${item}-btn`}
           selected={filterList.find((f) => f === item) !== undefined}
+          data-testid="filterBtn"
         >
           <Styled.FilterBtnSpan key={`${item}span`}>{item}</Styled.FilterBtnSpan>
         </Styled.FilterBtn>
@@ -139,6 +140,7 @@ function SearchArea({
               type="text"
               defaultValue={keyword || ''}
               onChange={debouncedHandleChange}
+              role="textbox"
             />
           </Styled.SearchInputContainer>
           <Styled.SearchMarginBox />
